@@ -1,54 +1,53 @@
 {
   "name": "@react-email/markdown",
-  "version": "0.0.2",
-  "description": "Convert markdown input to valid react-email synthax",
+  "version": "0.0.14",
+  "description": "Convert Markdown to valid React Email template code.",
   "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
-    "lint": "eslint",
     "clean": "rm -rf dist",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev": "tsup src/index.ts --format esm,cjs --dts --external react --watch",
+    "test:watch": "vitest",
+    "test": "vitest run"
   },
-  "keywords": [
-    "react",
-    "email",
-    "markdown"
-  ],
+  "keywords": ["react", "email", "markdown"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/resendlabs/react-email.git",
+    "url": "https://github.com/resend/react-email.git",
     "directory": "packages/markdown"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "devDependencies": {
-    "@babel/preset-react": "7.18.6",
-    "@types/jest": "29.5.0",
-    "@types/react": "18.0.20",
-    "babel-jest": "28.1.3",
-    "eslint": "8.23.1",
-    "jest": "28.1.3",
-    "ts-jest": "28.0.8",
-    "tsup": "6.2.3",
-    "@react-email/render": "0.0.6",
-    "typescript": "4.8.3"
-  },
   "dependencies": {
-    "md-to-react-email": "2.0.1"
+    "md-to-react-email": "5.0.5"
+  },
+  "peerDependencies": {
+    "react": "^18.0 || ^19.0 || ^19.0.0-rc"
+  },
+  "devDependencies": {
+    "@react-email/render": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "5.1.6"
   }
 }
